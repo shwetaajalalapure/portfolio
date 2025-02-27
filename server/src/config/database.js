@@ -1,31 +1,27 @@
-import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
+// This is a dummy database file that doesn't actually connect to MySQL
+// It's used to maintain compatibility with existing code while removing the MySQL dependency
 
-dotenv.config();
+console.log('MySQL dependency has been removed. Using dummy database implementation.');
 
-const sequelize = new Sequelize('portfolio', 'root', '2025', {
-  host: 'localhost',
-  dialect: 'mysql',
-  logging: false,
-  port: 3306
-});
-
-// Initialize database and test connection
-const initDatabase = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('MySQL connection has been established successfully.');
-    
-    // Sync all models
-    await sequelize.sync();
-    console.log('Database tables synced successfully.');
-  } catch (err) {
-    console.error('Unable to connect to the database:', err);
-    throw err;
+// Create a dummy sequelize object with methods that do nothing
+const sequelize = {
+  authenticate: async () => {
+    return Promise.resolve();
+  },
+  sync: async () => {
+    return Promise.resolve();
+  },
+  define: (modelName, attributes, options) => {
+    // Return a dummy model with common methods
+    return {
+      findAll: async () => [],
+      findByPk: async () => null,
+      create: async (data) => ({ id: 'dummy-id', ...data, createdAt: new Date(), updatedAt: new Date() }),
+      update: async () => [0],
+      destroy: async () => 0
+    };
   }
 };
 
-// Initialize the database
-initDatabase();
-
+// No need to initialize anything
 export default sequelize; 

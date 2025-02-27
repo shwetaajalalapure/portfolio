@@ -1,6 +1,6 @@
 import express from 'express';
-import Contact from '../models/Contact.js';
 import { sendEmail } from '../utils/email.js';
+import { appendToGoogleSheet } from '../utils/googleSheets.js';
 import auth from '../middleware/auth.js';
 
 const router = express.Router();
@@ -8,32 +8,51 @@ const router = express.Router();
 // Submit contact form
 router.post('/', async (req, res) => {
   try {
-    // 1. Save to database
-    const contact = await Contact.create(req.body);
+    console.log('Received contact form submission:', req.body);
+    
+    // 1. Append to Google Sheet
+    let sheetResponse;
+    try {
+      sheetResponse = await appendToGoogleSheet(req.body);
+      console.log('Appended to Google Sheet successfully');
+    } catch (sheetError) {
+      console.error('Google Sheet error:', sheetError);
+      return res.status(500).json({ 
+        message: 'Failed to save your message',
+        error: sheetError.message 
+      });
+    }
     
     // 2. Send email notification
+    const formData = req.body;
     const emailText = `
       New Contact Form Submission:
       
-      Name: ${contact.name}
-      Email: ${contact.email}
-      Subject: ${contact.subject}
-      Message: ${contact.message}
+      Name: ${formData.name}
+      Email: ${formData.email}
+      Subject: ${formData.subject}
+      Message: ${formData.message}
       
       Submitted on: ${new Date().toLocaleString()}
     `;
 
-    await sendEmail({
-      to: 'srikumarpride@gmail.com',
-      subject: `New Contact Form: ${contact.subject}`,
-      text: emailText,
-      html: emailText.replace(/\n/g, '<br>')
-    });
+    try {
+      await sendEmail({
+        to: 'shwetavirupaksh@gmail.com',
+        subject: `New Contact Form: ${formData.subject}`,
+        text: emailText,
+        html: emailText.replace(/\n/g, '<br>')
+      });
+      console.log('Email notification sent');
+    } catch (emailError) {
+      console.error('Email notification error:', emailError);
+      // Continue even if email fails
+    }
 
     // 3. Send success response
     res.status(201).json({ 
       message: 'Message sent successfully',
-      contact: contact
+      sheetResponse
     });
 
   } catch (error) {
@@ -45,33 +64,14 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Get all messages (protected)
+// Get all messages (protected) - This endpoint will no longer work without database
 router.get('/', auth, async (req, res) => {
-  try {
-    const messages = await Contact.findAll({
-      order: [['createdAt', 'DESC']]
-    });
-    res.json(messages);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+  res.status(501).json({ message: 'This endpoint is no longer supported as data is only stored in Google Sheets' });
 });
 
-// Update message status (protected)
+// Update message status (protected) - This endpoint will no longer work without database
 router.patch('/:id', auth, async (req, res) => {
-  try {
-    const [updated] = await Contact.update(req.body, {
-      where: { id: req.params.id }
-    });
-    if (updated) {
-      const message = await Contact.findByPk(req.params.id);
-      res.json(message);
-    } else {
-      res.status(404).json({ message: 'Message not found' });
-    }
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
+  res.status(501).json({ message: 'This endpoint is no longer supported as data is only stored in Google Sheets' });
 });
 
 export default router; 

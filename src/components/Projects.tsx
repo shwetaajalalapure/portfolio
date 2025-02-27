@@ -2,24 +2,24 @@ import { motion } from 'framer-motion';
 
 const projectsData = [
   {
-    title: 'Social Media Automation',
-    description: 'A comprehensive social media management system I developed that automates email responses, content posting, and email handling. This project streamlines social media operations and maintains consistent brand presence across platforms.',
-    image: 'https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=1170&auto=format&fit=crop',
-    tags: ['Python', 'Automation', 'Social Media APIs', 'Email Integration'],
+    title: 'Workspace Website',
+    description: 'Designed a seamless, productivity-focused workspace platform with an intuitive UI. Enhanced user experience with modern layouts, interactive dashboards, and responsive design.',
+    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1170&auto=format&fit=crop',
+    tags: ['User Experience Design', 'User Interface Design', 'Wireframing', 'Figma', 'Wix Studio'],
     liveUrl: '#'
   },
   {
-    title: 'AI Voice Proposal Generator',
-    description: 'My innovative AI application that transforms voice or text input into professional business proposals. Users can generate proposals through voice commands or text input, with automatic formatting and email sending capabilities.',
-    image: 'https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=2070&auto=format&fit=crop',
-    tags: ['Python', 'AI', 'Speech Recognition', 'Email Automation'],
+    title: 'Astrology Website',
+    description: 'Created an engaging astrology platform with immersive visuals and interactive elements. Optimized user flow for personalized horoscope readings and seamless navigation.',
+    image: 'https://images.unsplash.com/photo-1505506874110-6a7a69069a08?q=80&w=1170&auto=format&fit=crop',
+    tags: ['Visual Design', 'Interactive Design', 'User Flow', 'Canva', 'Wix Editor'],
     liveUrl: '#'
   },
   {
-    title: 'Mobile Application Development',
-    description: 'A React Native mobile app I built with modern UI/UX principles. Implemented features like real-time data processing and offline capabilities. The app demonstrates my expertise in creating responsive and user-friendly mobile experiences.',
-    image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1974&auto=format&fit=crop',
-    tags: ['React Native', 'TypeScript', 'UI/UX', 'Mobile Development'],
+    title: 'Crane Industries Website',
+    description: 'Developed an industrial-grade website with a robust, scalable design. Focused on accessibility, structured information, and high-performance web architecture.',
+    image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1170&auto=format&fit=crop',
+    tags: ['Information Architecture', 'UI Design', 'Adobe Illustrator', 'Responsive Design', 'Figma'],
     liveUrl: '#'
   },
 ];
@@ -38,7 +38,7 @@ const Projects = () => {
           <h2 className="text-4xl font-bold text-gray-900 mb-4">My Projects</h2>
           <div className="w-20 h-1 bg-indigo-600 mx-auto"></div>
           <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-            Here are some of the key projects I've developed, showcasing my skills in automation, AI integration, and mobile app development
+            Here are some of my key design projects, showcasing my skills in UI/UX design and web development
           </p>
         </motion.div>
 
@@ -72,34 +72,11 @@ const Projects = () => {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm"
+                      className="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-sm text-center"
                     >
                       {tag}
                     </span>
                   ))}
-                </div>
-                <div className="mt-auto">
-                  <button
-                    className="w-full inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300"
-                    onClick={() => {
-                      alert('Portfolio details will be updated soon!');
-                    }}
-                  >
-                    View Project Details
-                    <svg
-                      className="ml-2 -mr-1 h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 7l5 5m0 0l-5 5m5-5H6"
-                      />
-                    </svg>
-                  </button>
                 </div>
               </div>
             </motion.div>

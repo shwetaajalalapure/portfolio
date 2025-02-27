@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaLinkedinIn, FaPhoneAlt } from 'react-icons/fa';
+import { FaLinkedinIn, FaBehance } from 'react-icons/fa';
 import { HiMail } from 'react-icons/hi';
 
 const Footer = () => {
@@ -9,17 +9,17 @@ const Footer = () => {
     {
       name: 'LinkedIn',
       icon: FaLinkedinIn,
-      url: 'https://www.linkedin.com/in/c-sree-kumar-0ab829293',
+      url: 'https://www.linkedin.com/in/shweta-jalalapure',
     },
     {
-      name: 'Phone',
-      icon: FaPhoneAlt,
-      url: 'tel:+917993793171',
+      name: 'Behance',
+      icon: FaBehance,
+      url: 'https://www.behance.net/shwetajalalapure',
     },
     {
       name: 'Email',
       icon: HiMail,
-      url: 'mailto:srikumarpride@gmail.com',
+      url: 'mailto:shwetajalalapure@gmail.com',
     },
   ];
 
@@ -44,12 +44,16 @@ const Footer = () => {
               className="space-y-4"
             >
               <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                Sree Kumar
+                Shweta Jalalapure
               </h3>
               <p className="text-gray-400 leading-relaxed">
-                A passionate developer focused on creating innovative solutions through web development,
-                automation, and mobile applications. Contact me at +91 7993793171
+                A passionate UI/UX designer focused on creating intuitive and engaging user experiences
+                through thoughtful design and creative solutions.
               </p>
+              <div className="text-gray-400">
+                <p className="font-semibold text-gray-300">Location:</p>
+                <p>Bangalore, India</p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -109,7 +113,7 @@ const Footer = () => {
           className="border-t border-gray-800 py-8"
         >
           <p className="text-center text-gray-400 text-sm">
-            © {currentYear} Sree Kumar. All rights reserved.
+            © {currentYear} Shweta Jalalapure. All rights reserved.
           </p>
         </motion.div>
       </div>

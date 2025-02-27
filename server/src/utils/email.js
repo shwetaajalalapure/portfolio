@@ -6,8 +6,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   auth: {
-    user: 'srikumarpride@gmail.com',
-    pass: 'stca ocky epyn myjs'
+    user: 'shwetavirupaksh@gmail.com',
+    pass: process.env.SMTP_PASS
   }
 });
 
@@ -15,6 +15,7 @@ const transporter = nodemailer.createTransport({
 transporter.verify((error, success) => {
   if (error) {
     console.error('Email configuration error:', error);
+    console.log('Email notifications will be disabled, but form submissions will still work.');
   } else {
     console.log('Email server is ready to send messages');
   }
@@ -23,7 +24,7 @@ transporter.verify((error, success) => {
 export const sendEmail = async ({ to, subject, text, html }) => {
   try {
     const info = await transporter.sendMail({
-      from: '"Portfolio Contact Form" <srikumarpride@gmail.com>',
+      from: '"Portfolio Contact Form" <shwetavirupaksh@gmail.com>',
       to,
       subject,
       text,
@@ -34,6 +35,8 @@ export const sendEmail = async ({ to, subject, text, html }) => {
     return info;
   } catch (error) {
     console.error('Error sending email:', error);
-    throw new Error('Failed to send email notification: ' + error.message);
+    console.log('Continuing without sending email notification');
+    // Don't throw the error so the form submission can still complete
+    return { error: error.message, emailSent: false };
   }
 }; 

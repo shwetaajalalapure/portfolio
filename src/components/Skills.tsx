@@ -12,30 +12,30 @@ interface SkillCategory {
 
 const skillsData: SkillCategory[] = [
   {
-    category: 'Frontend',
+    category: 'Design Skills',
     skills: [
-      { name: 'HTML', level: 85 },
-      { name: 'CSS', level: 85 },
-      { name: 'React Native', level: 80 },
-      { name: 'TypeScript', level: 75 },
+      { name: 'User Experience Design', level: 90 },
+      { name: 'User Research', level: 85 },
+      { name: 'Colour Theory', level: 90 },
+      { name: 'User Interface', level: 90 },
     ],
   },
   {
-    category: 'Backend & Database',
+    category: 'Technical Skills',
     skills: [
-      { name: 'Python', level: 85 },
-      { name: 'MySQL', level: 80 },
-      { name: 'Web Scraping', level: 90 },
-      { name: 'Chrome Extensions', level: 90 },
+      { name: 'Design Thinking', level: 85 },
+      { name: 'Iconography', level: 80 },
+      { name: 'Prototyping & Wireframing', level: 90 },
+      { name: 'Interaction Design', level: 85 },
     ],
   },
   {
-    category: 'Specialized Skills',
+    category: 'Soft Skills',
     skills: [
-      { name: 'Automation', level: 90 },
-      { name: 'Browser Extensions', level: 90 },
-      { name: 'Data Extraction', level: 90 },
-      { name: 'Expo Router', level: 80 },
+      { name: 'Communication', level: 90 },
+      { name: 'Collaboration', level: 85 },
+      { name: 'Problem Solving', level: 85 },
+      { name: 'Empathy', level: 90 },
     ],
   },
 ];
@@ -94,22 +94,20 @@ const Skills = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16 text-center"
+          className="mt-12 md:mt-16 text-center"
         >
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6">Additional Skills</h3>
-          <div className="flex flex-wrap justify-center gap-4">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">Design Tools</h3>
+          <div className="flex flex-wrap justify-center gap-2 px-4">
             {[
-              'Social Media Automation',
-              'Custom Software Development',
-              'Mobile App Development',
-              'AI Integration',
-              'Data Extraction',
-              'Chrome Extension Development',
-              'Figma (UI Design)',
+              'Figma',
+              'Canva',
+              'Wix Studio',
+              'Adobe Illustrator',
+              'Wix Editor',
             ].map((skill) => (
               <span
                 key={skill}
-                className="px-4 py-2 bg-white text-gray-700 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300"
+                className="px-3 py-2.5 sm:py-1.5 bg-white text-gray-700 rounded-full border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300 text-sm whitespace-nowrap"
               >
                 {skill}
               </span>
