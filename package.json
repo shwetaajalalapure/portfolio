@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://shwetavirupaksh.github.io/ShwetaPortfolio",
+  "homepage": "https://shwetaajalalapure.github.io/ShwetaPortfolio",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
