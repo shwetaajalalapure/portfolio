@@ -1,6 +1,11 @@
 import axios from 'axios';
+import { submitToGoogleSheets } from './googleSheets';
 
-const API_URL = 'http://localhost:5001/api';
+// Use environment variable for API URL or default to localhost
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+
+// Check if we're in production (GitHub Pages)
+const isProduction = window.location.hostname !== 'localhost';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -66,8 +71,17 @@ export const submitContactForm = async (data: {
   phone?: string;
 }) => {
   try {
-    const response = await api.post('/contact', data);
-    return response.data;
+    // If in production (GitHub Pages), use Google Sheets direct submission
+    if (isProduction) {
+      console.log('Using Google Sheets direct submission in production');
+      const success = await submitToGoogleSheets(data);
+      return { message: 'Message sent successfully', success };
+    } else {
+      // In development, use the local API server
+      console.log('Using local API server in development');
+      const response = await api.post('/contact', data);
+      return response.data;
+    }
   } catch (error) {
     console.error('Contact form submission error:', error);
     throw error;
